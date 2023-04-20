@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-    t_map   *map;
+    t_map   map;
 
     ft_check_args(argc, argv);
     map = ft_make_map(argc, argv);
