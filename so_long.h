@@ -17,6 +17,13 @@ typedef struct s_map
     t_size_map  *size;
 }   t_map;
 
+typedef struct  s_components
+{
+    int player;
+    int exit;
+    int collectible;
+}   t_components;
+
 t_map   *ft_make_map(int argc, char **argv);
 void    ft_check_args(int argc, char **argv);
 void    ft_check_map(t_map *map);
