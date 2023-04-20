@@ -23,6 +23,7 @@ void    ft_check_args(int argc, char **argv)
     close (fd);
 }
 
+
 int ft_has_walls(t_map *map)
 {
     int i;
@@ -46,7 +47,6 @@ int ft_has_walls(t_map *map)
 
 void    ft_check_map(t_map *map)
 {
-    
     if (!ft_has_walls(map))
     {
         ft_putstr_fd("Error\nThe map is not delimited by walls\n", 1);
@@ -55,6 +55,46 @@ void    ft_check_map(t_map *map)
     if (map -> height == map -> width)
     {
         ft_putstr_fd("Error\nThe map must be rectangular\n");
+        exit (0);
+    }
+}
+
+int    ft_valid_components(t_map *map, t_components *components)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < map -> height)
+    {
+        j = 0;
+        while (j < map -> width)
+        {
+            if (map -> map[i][j] == 'P')
+                components -> player++;
+            if (map -> map[i][j] == 'E')
+                components -> exit++;
+            if (map -> map[i][j] == 'C')
+                components -> collectible++;
+            j++;
+        }
+        i++;
+    }
+    if (components -> player != 1 || components -> exit != 1 || components -> collectible < 1)
+        return (0);
+    return (1);
+}
+
+void    ft_check_components(t_map *map)
+{
+    t_components components;
+
+    components.player = 0;
+    components.exit = 0;
+    components.collectible = 0;
+    if (!ft_valid_components(map, &components))
+    {
+        ft_putstr_fd("Error\nWrong number of player, exit or collectible\n", 1);
         exit (0);
     }
 }
