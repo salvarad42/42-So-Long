@@ -28,6 +28,7 @@ t_map    *ft_make_map(int argc, char **argv)
 
     map = (t_map *) malloc(sizeof(t_map));
     map -> size = ft_map_size(argv);
+    map -> components = NULL;
     map -> map = (char **) ft_calloc(map -> size -> height, sizeof(char *));
     if (!map -> map)
         return (NULL);
