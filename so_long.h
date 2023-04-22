@@ -34,6 +34,7 @@ typedef struct s_map
 t_map   *ft_make_map(int argc, char **argv);
 void    ft_check_args(int argc, char **argv);
 void    ft_check_map(t_map *map);
-int     ft_check_exit(t_map *map);
+void    ft_check_exit(t_map *map);
+void    ft_check_width(char *str, int size);
 
 #endif

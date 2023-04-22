@@ -14,6 +14,7 @@ t_size_map *ft_map_size(char **argv)
     while (line)
     {
         line = get_next_line(fd);
+        ft_check_width(line, size -> width);
         size -> height++;
     }
     close (fd);
