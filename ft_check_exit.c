@@ -1,44 +1,44 @@
 #include "so_long.h"
 
-void    ft_dfs_exit(int row, int col, t_map *map, int *exit, int *collectible)
+void    ft_dfs_exit(int row, int col, t_map *map, t_dfs *dfs_args)
 {
-    if (row < 0 || col < 0 || row >= map -> size -> width || col >= map -> size -> height)
+    if (row < 0 || col < 0 ||  col >= map -> size -> width || row >= map -> size -> height)
         return;
-    if (map -> map[row][col] == '1' || visited[row][col] == 1)
+    if (map -> map[row][col] == '1' || dfs_args -> visited[row][col] == 1)
         return;
     if (map -> map[row][col] == 'E')
-        exit = 1;
+        dfs_args -> exit = 1;
     if (map -> map[row][col] == 'C')
-        collectible++;
-    visited[row][col] = 1;
-    if (exit == 1 && collectible == map -> components -> collectible)
+        dfs_args -> collectible += 1;
+    dfs_args -> visited[row][col] = 1;
+    if (dfs_args -> exit == 1 && dfs_args -> collectible == map -> components -> collectible)
         return;
-    ft_dfs_exit(row - 1, col, map, exit, collectible);
-    ft_dfs_exit(row + 1, col, map, exit, collectible);
-    ft_dfs_exit(row, col - 1, map, exit, collectible);
-    ft_dfs_exit(row, col + 1, map, exit, collectible);
+    ft_dfs_exit(row - 1, col, map, dfs_args);
+    ft_dfs_exit(row + 1, col, map, dfs_args);
+    ft_dfs_exit(row, col - 1, map, dfs_args);
+    ft_dfs_exit(row, col + 1, map, dfs_args);
 }
 
 void    ft_check_exit(t_map *map)
 {
-    int **visited;
-    int exit;
-    int collectible;
-    int i;
-
+    t_dfs   *dfs_args;
+    int     i;
+    
     i = 0;
-    visited = (int **) ft_calloc(map -> size -> height,  sizeof(int *));
+    dfs_args = (t_dfs *) malloc(sizeof(t_dfs));
+    dfs_args -> visited = (int **) ft_calloc(map -> size -> height,  sizeof(int *));
     while (i < map -> size -> height)
     {
-        visited[i] = (int *) ft_calloc(map -> size -> width, sizeof(int));
+        dfs_args -> visited[i] = (int *) ft_calloc(map -> size -> width, sizeof(int));
         i++;
     }
-    exit = 0;
-    collectible = 0;
-    ft_dsf_exit(map -> components -> player -> x, map -> components -> player -> y, map, &exit, &collectible);
-    if (exit != 1 || collectible != map -> components ->collectible)
+    dfs_args -> exit = 0;
+    dfs_args -> collectible = 0;
+    ft_dfs_exit(map -> components -> player -> pos -> x, map -> components -> player -> pos -> y, map, dfs_args);
+    if (dfs_args -> exit != 1 || dfs_args -> collectible != map -> components ->collectible)
     {
-        ft_putstr_fd("Error\nNo exit\n");
+        ft_putstr_fd("Error\nNo exit\n", 1);
         exit (0);
     }
+    free(dfs_args);
 }

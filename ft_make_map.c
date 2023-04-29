@@ -13,15 +13,15 @@ t_size_map *ft_map_size(char **argv)
     size -> height = 0;
     while (line)
     {
-        line = get_next_line(fd);
         ft_check_width(line, size -> width);
         size -> height++;
+        line = get_next_line(fd);
     }
     close (fd);
     return (size);
 }
 
-t_map    *ft_make_map(int argc, char **argv)
+t_map    *ft_make_map(char **argv)
 {
     t_map   *map;
     int     fd;
