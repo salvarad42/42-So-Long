@@ -75,6 +75,7 @@ void    ft_get_components(t_map *map)
     components -> player = (t_player *) malloc (sizeof(t_player));
     components -> player -> pos = NULL;
     components -> player -> movements = 0;
+    components ->  player -> sprite = left_alive;
     components -> exit = NULL;
     components -> collectible = 0;
     if (!ft_check_components(map, components))

@@ -1,14 +1,14 @@
 #include "so_long.h"
 
-t_size_map *ft_map_size(char **argv)
+t_size *ft_map_size(char **argv)
 {
-    t_size_map  *size;
+    t_size  *size;
     char        *line;
     int         fd;
 
     fd = open(argv[1], O_RDONLY);
     line = get_next_line(fd);
-    size = (t_size_map *) malloc(sizeof(t_size_map));
+    size = (t_size *) malloc(sizeof(t_size));
     size -> width = (int) ft_strlen(line);
     size -> height = 0;
     while (line)

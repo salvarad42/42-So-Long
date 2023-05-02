@@ -34,7 +34,7 @@ void    ft_check_exit(t_map *map)
     }
     dfs_args -> exit = 0;
     dfs_args -> collectible = 0;
-    ft_dfs_exit(map -> components -> player -> pos -> x, map -> components -> player -> pos -> y, map, dfs_args);
+    ft_dfs_exit(map -> components -> player -> pos -> y, map -> components -> player -> pos -> x, map, dfs_args);
     if (dfs_args -> exit != 1 || dfs_args -> collectible != map -> components ->collectible)
     {
         ft_putstr_fd("Error\nNo exit\n", 1);
