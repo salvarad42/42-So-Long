@@ -6,7 +6,7 @@
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:44:35 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 10:45:25 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:10:04 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	ft_update_exit(t_game *game, t_player *player, int x, int y)
 	{
 		game -> map -> map[player -> pos -> y][player -> pos -> x] = '0';
 		game -> map -> map[y][x] = 'P';
-		if (player -> sprite <= right_alive_jump)
-			player -> sprite = right_exit;
-		else
+		if (player -> sprite <= left_jump)
 			player -> sprite = left_exit;
+		else
+			player -> sprite = right_exit;
 		ft_update_pos(game -> map -> components -> player, x, y);
 		ft_print_map(game);
 		ft_end_game(game);
@@ -40,10 +40,10 @@ void	ft_update_enemy(t_game *game, t_player *player, int x, int y)
 {
 	game -> map -> map[player -> pos -> y][player -> pos -> x] = '0';
 	game -> map -> map[y][x] = 'P';
-	if (player -> sprite <= right_alive_jump)
-		player -> sprite = right_dead;
-	else
+	if (player -> sprite <= left_jump)
 		player -> sprite = left_dead;
+	else
+		player -> sprite = right_dead;
 	ft_update_pos(game -> map -> components -> player, x, y);
 	ft_print_map(game);
 	ft_end_game(game);
@@ -69,7 +69,7 @@ void	ft_update_map(t_game *game, int x, int y)
 	}
 }
 
-int	ft_move_player(int key, t_game *game)
+void	ft_move_player(int key, t_game *game)
 {
 	int	x;
 	int	y;
@@ -90,8 +90,5 @@ int	ft_move_player(int key, t_game *game)
 		x += 1;
 		game -> map -> components -> player -> sprite = right_alive;
 	}
-	else if (key == KEY_SCAPE)
-		ft_close_game(game);
 	ft_update_map(game, x, y);
-	return (0);
 }

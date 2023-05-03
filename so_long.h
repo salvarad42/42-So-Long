@@ -6,7 +6,7 @@
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:43:20 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 11:32:44 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:09:26 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@
 typedef enum s_player_sprite
 {
 	left_alive,
-	left_alive_jump,
+	left_jump,
 	left_dead,
 	left_exit,
 	right_alive,
-	right_alive_jump,
+	right_jump,
 	right_dead,
 	right_exit
 }	t_player_sprite;
@@ -113,10 +113,11 @@ void		ft_check_width(char *str, int size);
 char		*get_next_line(int fd);
 void		ft_print_map(t_game *game);
 void		ft_game(t_map *map);
-int			ft_move_player(int key, t_game *game);
+void		ft_move_player(int key, t_game *game);
 t_assets	*ft_load_assets(void *mlx);
 void		ft_print_assets(t_game *game, t_pos pos);
 void		ft_end_game(t_game *game);
 int			ft_close_game(t_game *game);
+int			ft_create_rgb(int t, int r, int g, int b);
 
 #endif

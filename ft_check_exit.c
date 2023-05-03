@@ -6,7 +6,7 @@
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:07:37 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 08:11:52 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:07:56 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	ft_dfs_exit(int row, int col, t_map *map, t_dfs *dfs_args)
 		|| col >= map -> size -> width
 		|| row >= map -> size -> height)
 		return ;
-	if (map -> map[row][col] == '1' || dfs_args -> visited[row][col] == 1)
+	if (map -> map[row][col] == '1'
+		|| dfs_args -> visited[row][col] == 1
+		|| map -> map[row][col] == 'X')
 		return ;
 	if (map -> map[row][col] == 'E')
 		dfs_args -> exit = 1;

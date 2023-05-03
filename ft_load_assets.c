@@ -6,7 +6,7 @@
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:34:11 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 11:01:48 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:09:50 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_load_player_assets(void *mlx, t_assets *assets)
 	assets -> player = (t_img **) malloc(8 * sizeof(t_img *));
 	assets -> player[left_alive] = ft_load_img(mlx,
 			"./assets/player01-left.xpm");
-	assets -> player[left_alive_jump] = ft_load_img(mlx,
+	assets -> player[left_jump] = ft_load_img(mlx,
 			"./assets/player02-left.xpm");
 	assets -> player[left_dead] = ft_load_img(mlx,
 			"./assets/player03-left.xpm");
@@ -36,7 +36,7 @@ void	ft_load_player_assets(void *mlx, t_assets *assets)
 			"./assets/exit-left.xpm");
 	assets -> player[right_alive] = ft_load_img(mlx,
 			"./assets/player01-right.xpm");
-	assets -> player[right_alive_jump] = ft_load_img(mlx,
+	assets -> player[right_jump] = ft_load_img(mlx,
 			"./assets/player02-right.xpm");
 	assets -> player[right_dead] = ft_load_img(mlx,
 			"./assets/player03-right.xpm");

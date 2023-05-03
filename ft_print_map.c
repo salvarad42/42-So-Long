@@ -6,7 +6,7 @@
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:40:04 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 10:59:57 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:10:49 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,9 @@ void	ft_print_map(t_game *game)
 		}
 		pos.y++;
 	}
+	mlx_string_put(game -> mlx, game -> mlx_win,
+		game -> map -> size -> width,
+		game -> map -> size -> height,
+		ft_create_rgb(1, 255, 255, 255),
+		ft_itoa(game -> map -> components -> player -> movements));
 }

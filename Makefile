@@ -1,7 +1,7 @@
 NAME = so_long
 
 SRC = main.c ft_check_args.c ft_make_map.c ft_check_map.c ft_check_exit.c ft_check_width.c\
-		get_next_line.c ft_print_map.c ft_game.c ft_move_player.c ft_load_assets.c
+		get_next_line.c ft_print_map.c ft_game.c ft_move_player.c ft_load_assets.c ft_create_rgb.c
 
 OBJS = ${SRC:.c=.o}
 
