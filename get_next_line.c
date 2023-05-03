@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salvarad <salvarad@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:50:21 by salvarad          #+#    #+#             */
-/*   Updated: 2022/11/08 12:13:54 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 08:06:37 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

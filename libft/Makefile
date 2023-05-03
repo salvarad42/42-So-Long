@@ -1,13 +1,13 @@
 # **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: salvarad <salvarad@student.42malaga.com>   +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/28 12:07:23 by salvarad          #+#    #+#              #
-#    Updated: 2022/10/13 10:58:51 by salvarad         ###   ########.fr        #
-#                                                                              #
+#                                                                      		#
+#                                                         :::  	::::::::	#
+#    Makefile                                           :+:      :+:	:+:	#
+#                                                     +:+ +:+     	+:+  	#
+#    By: salvarad <salvarad@student.42malaga.com>   +#+  +:+       +#+ 		#
+#                                                 +#+#+#+#+#+   +#+    		#
+#    Created: 2022/09/28 12:07:23 by salvarad          #+#    #+#      		#
+#    Updated: 2022/10/13 10:58:51 by salvarad         ###   ########.fr		#
+#                                                                      		#
 # **************************************************************************** #
 
 NAME = libft.a
@@ -23,13 +23,13 @@ SRCSB = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_
 		ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c\
 		ft_lstmap_bonus.c
 
-OBJS = $(SRCS:.c=.o) 
+OBJS = $(SRCS:.c=.o)
 
 OBJSB = $(SRCSB:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
 
-$(NAME): $(OBJS) 
+$(NAME): $(OBJS)
 	gcc -c $(FLAGS) $(SRCS)
 	ar rcs $(NAME) $(OBJS)
 
@@ -38,10 +38,13 @@ all: $(NAME)
 bonus: $(OBJS) $(OBJSB) $(SRCS) $(SRCSB)
 	ar rcs $(NAME) $(OBJS) $(OBJSB) $(SRCS)
 
-clean: 
+clean:
 	rm -f $(OBJS) $(OBJSB)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+debug: CFLAGS += -g
+debug: ${NAME}

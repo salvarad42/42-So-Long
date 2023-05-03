@@ -1,0 +1,18 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.renderWhitespace": "all",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "codam-norminette-3.command": "/Users/sr.lilitha/Library/Python/3.11/bin/norminette", // command that the highlighter executes to get the norm errors
+    "codam-norminette-3.fileregex": "\\.[ch]$", // regex that matches the files you want to norm check
+    "codam-norminette-3.ignoreErrors": [ // do not highlight these norm errors
+        // "WRONG_SCOPE_COMMENT",
+        // "LINE_TOO_LONG"
+    ],
+    "codam-norminette-3.highlight-color": "rgba(255, 0, 0, 0.2)", // highlight norm errors in custom color. Can be in rgba, hex, or vscode.ThemeColor format.
+    "codam-norminette-3.displayErrorName": false, // display name of error on hover
+    "42header.username": "salvarad",
+    "42header.email": "salvarad@student.42malaga.com"
+}
