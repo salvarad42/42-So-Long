@@ -6,7 +6,7 @@
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:43:20 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 13:09:26 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/04 00:06:45 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define KEY_SCAPE 53
 # define FONT_WIDTH 10
 # define FONT_HEIGHT 20
+# define PLAYER_ANIMATION 2000
 
 typedef enum s_player_sprite
 {
@@ -81,6 +82,7 @@ typedef struct s_player
 	int				movements;
 	t_player_sprite	sprite;
 	t_pos			*pos;
+	int				frames;
 }	t_player;
 
 typedef struct s_components
@@ -119,5 +121,6 @@ void		ft_print_assets(t_game *game, t_pos pos);
 void		ft_end_game(t_game *game);
 int			ft_close_game(t_game *game);
 int			ft_create_rgb(int t, int r, int g, int b);
+void		ft_print_player(t_game *game, t_pos pos, t_player_sprite sprite);
 
 #endif

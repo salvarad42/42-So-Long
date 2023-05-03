@@ -6,7 +6,7 @@
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:29:26 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 13:09:08 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/04 00:07:22 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,24 @@ int	ft_close_game(t_game *game)
 	return (0);
 }
 
+int	ft_sprite_motion(t_game *game)
+{
+	t_player	*player;
+
+	player = game -> map -> components -> player;
+	if (player -> frames < PLAYER_ANIMATION)
+	{
+		player -> frames++;
+		return (0);
+	}
+	if (player -> sprite == left_alive || player -> sprite == right_alive)
+		player -> sprite++;
+	else if (player -> sprite == left_jump || player -> sprite == right_jump)
+		player -> sprite--;
+	ft_print_player(game, *player -> pos, player -> sprite);
+	return (1);
+}
+
 void	ft_game(t_map *map)
 {
 	t_game			*game;
@@ -62,6 +80,7 @@ void	ft_game(t_map *map)
 	ft_print_map(game);
 	mlx_hook(game -> mlx_win, 17, 0, ft_close_game, game);
 	mlx_key_hook(game -> mlx_win, ft_on_key, game);
+	mlx_loop_hook(game -> mlx, ft_sprite_motion, game);
 	mlx_loop(game -> mlx);
 	free(game);
 }

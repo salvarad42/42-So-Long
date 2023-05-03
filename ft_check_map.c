@@ -6,7 +6,7 @@
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:12:02 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 11:48:21 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 23:52:53 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	ft_get_components(t_map *map)
 	components -> player -> pos = NULL;
 	components -> player -> movements = 0;
 	components -> player -> sprite = left_alive;
+	components -> player -> frames = 0;
 	components -> exit = NULL;
 	components -> collectible = 0;
 	if (!ft_check_components(map, components))

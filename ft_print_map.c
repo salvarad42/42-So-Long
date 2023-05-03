@@ -6,7 +6,7 @@
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:40:04 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/03 13:10:49 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/03 23:56:36 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ void	ft_print_assets_exit(t_game *game, t_pos pos)
 			pos.x * SIZE_W, pos.y * SIZE_H);
 }
 
+void	ft_print_player(t_game *game, t_pos pos, t_player_sprite sprite)
+{
+	mlx_put_image_to_window(game -> mlx, game -> mlx_win,
+		game -> assets -> player[sprite]-> img,
+		pos.x * SIZE_W, pos.y * SIZE_H);
+	game -> map -> components -> player -> frames = 0;
+}
+
 void	ft_print_assets(t_game *game, t_pos pos)
 {
 	if (game -> map -> map[pos.y][pos.x] == '1')
@@ -33,10 +41,8 @@ void	ft_print_assets(t_game *game, t_pos pos)
 		mlx_put_image_to_window(game -> mlx, game -> mlx_win,
 			game -> assets -> floor -> img, pos.x * SIZE_W, pos.y * SIZE_H);
 	if (game -> map -> map[pos.y][pos.x] == 'P')
-		mlx_put_image_to_window(game -> mlx, game -> mlx_win,
-			game -> assets -> player[
-			game -> map -> components -> player -> sprite]-> img,
-			pos.x * SIZE_W, pos.y * SIZE_H);
+		ft_print_player(game, pos,
+			game -> map -> components -> player -> sprite);
 	if (game -> map -> map[pos.y][pos.x] == 'C')
 		mlx_put_image_to_window(game -> mlx, game -> mlx_win,
 			game -> assets -> collectible -> img,
@@ -64,8 +70,7 @@ void	ft_print_map(t_game *game)
 		pos.y++;
 	}
 	mlx_string_put(game -> mlx, game -> mlx_win,
-		game -> map -> size -> width,
-		game -> map -> size -> height,
-		ft_create_rgb(1, 255, 255, 255),
+		game -> map -> size -> width * SIZE_W - SIZE_W / 2 - FONT_WIDTH,
+		SIZE_H / 2, ft_create_rgb(1, 255, 255, 255),
 		ft_itoa(game -> map -> components -> player -> movements));
 }
