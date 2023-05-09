@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_map.c                                     :+:      :+:    :+:   */
+/*   ft_print_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:40:04 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/08 20:03:38 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/08 20:29:17 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_print_assets_exit(t_game *game, t_pos pos)
 {
@@ -29,6 +29,7 @@ void	ft_print_player(t_game *game, t_pos pos, t_player_sprite sprite)
 	mlx_put_image_to_window(game -> mlx, game -> mlx_win,
 		game -> assets -> player[sprite]-> img,
 		pos.x * SIZE_W, pos.y * SIZE_H);
+	game -> map -> components -> player -> frames = 0;
 }
 
 void	ft_print_assets(t_game *game, t_pos pos)
@@ -48,6 +49,9 @@ void	ft_print_assets(t_game *game, t_pos pos)
 			pos.x * SIZE_W, pos.y * SIZE_H);
 	if (game -> map -> map[pos.y][pos.x] == 'E')
 		ft_print_assets_exit(game, pos);
+	if (game -> map -> map[pos.y][pos.x] == 'X')
+		mlx_put_image_to_window(game -> mlx, game -> mlx_win,
+			game -> assets -> enemy -> img, pos.x * SIZE_W, pos.y * SIZE_H);
 }
 
 void	ft_print_map(t_game *game)
@@ -65,4 +69,8 @@ void	ft_print_map(t_game *game)
 		}
 		pos.y++;
 	}
+	mlx_string_put(game -> mlx, game -> mlx_win,
+		game -> map -> size -> width * SIZE_W - SIZE_W / 2 - FONT_WIDTH,
+		SIZE_H / 2, ft_create_rgb(1, 255, 255, 255),
+		ft_itoa(game -> map -> components -> player -> movements));
 }

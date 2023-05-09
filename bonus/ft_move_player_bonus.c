@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_move_player.c                                   :+:      :+:    :+:   */
+/*   ft_move_player_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:44:35 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/09 16:26:26 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/08 20:29:22 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_update_pos(t_player *player, int x, int y)
 {
 	if (player -> pos -> x != x || player -> pos -> y != y)
 		player -> movements += 1;
-	ft_putendl_fd(ft_itoa(player -> movements),STDOUT_FILENO);
 	player -> pos -> x = x;
 	player -> pos -> y = y;
 }
@@ -27,14 +26,27 @@ void	ft_update_exit(t_game *game, t_player *player, int x, int y)
 	{
 		game -> map -> map[player -> pos -> y][player -> pos -> x] = '0';
 		game -> map -> map[y][x] = 'P';
-		if (player -> sprite <= left_alive)
+		if (player -> sprite <= left_jump)
 			player -> sprite = left_exit;
 		else
 			player -> sprite = right_exit;
 		ft_update_pos(game -> map -> components -> player, x, y);
 		ft_print_map(game);
-		ft_close_game(game);
+		ft_end_game(game);
 	}
+}
+
+void	ft_update_enemy(t_game *game, t_player *player, int x, int y)
+{
+	game -> map -> map[player -> pos -> y][player -> pos -> x] = '0';
+	game -> map -> map[y][x] = 'P';
+	if (player -> sprite <= left_jump)
+		player -> sprite = left_dead;
+	else
+		player -> sprite = right_dead;
+	ft_update_pos(game -> map -> components -> player, x, y);
+	ft_print_map(game);
+	ft_end_game(game);
 }
 
 void	ft_update_map(t_game *game, int x, int y)
@@ -44,6 +56,8 @@ void	ft_update_map(t_game *game, int x, int y)
 	player = game -> map -> components -> player;
 	if (game -> map -> map[y][x] == 'E')
 		ft_update_exit(game, player, x, y);
+	else if (game -> map -> map[y][x] == 'X')
+		ft_update_enemy(game, player, x, y);
 	else if (game -> map -> map[y][x] != '1')
 	{
 		if (game -> map -> map[y][x] == 'C')

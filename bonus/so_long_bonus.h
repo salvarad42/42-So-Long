@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:43:20 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/09 16:29:10 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/08 20:31:37 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
+#ifndef SO_LONG_BONUS_H
 
-# define SO_LONG_H
+# define SO_LONG_BONUS_H
 
-# include "libft/libft.h"
-# include "mlx/mlx.h"
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
 # include <fcntl.h>
 
 # define BUFFER_SIZE 42
@@ -26,12 +26,19 @@
 # define KEY_LEFT 0
 # define KEY_RIGHT 2
 # define KEY_SCAPE 53
+# define FONT_WIDTH 10
+# define FONT_HEIGHT 20
+# define PLAYER_ANIMATION 2000
 
 typedef enum s_player_sprite
 {
 	left_alive,
+	left_jump,
+	left_dead,
 	left_exit,
 	right_alive,
+	right_jump,
+	right_dead,
 	right_exit
 }	t_player_sprite;
 
@@ -66,6 +73,7 @@ typedef struct s_assets
 	t_img	*wall;
 	t_img	**player;
 	t_img	*collectible;
+	t_img	*enemy;
 	t_img	**exit;
 }	t_assets;
 
@@ -74,6 +82,7 @@ typedef struct s_player
 	int				movements;
 	t_player_sprite	sprite;
 	t_pos			*pos;
+	int				frames;
 }	t_player;
 
 typedef struct s_components
@@ -113,7 +122,9 @@ void		ft_game(t_map *map);
 void		ft_move_player(int key, t_game *game);
 t_assets	*ft_load_assets(void *mlx);
 void		ft_print_assets(t_game *game, t_pos pos);
+void		ft_end_game(t_game *game);
 int			ft_close_game(t_game *game);
+int			ft_create_rgb(int t, int r, int g, int b);
 void		ft_print_player(t_game *game, t_pos pos, t_player_sprite sprite);
 
 #endif
