@@ -6,7 +6,7 @@
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:12:02 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/09 16:16:44 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:36:42 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	ft_check_components(t_map *map, t_components *components)
 				ft_make_position(&components -> exit, j, i);
 			if (map -> map[i][j] == 'C')
 				components -> collectible++;
-			else if (map -> map[i][j] != '0' && map -> map[i][j] != '1')
+			else if (map -> map[i][j] != '0' && map -> map[i][j] != '1' && map -> map[i][j] != 'X')
 			{
 				ft_putstr_fd("Error\nInvalid component\n", 1);
 				exit (0);
@@ -103,7 +103,7 @@ int	ft_check_components(t_map *map, t_components *components)
 
 void	ft_check_width(char *str, int size)
 {
-	if ((int) ft_strlen(str) != size)
+	if ((int) ft_strlen(str) != size):q
 	{
 		ft_putstr_fd("Error\nInvalid width\n", 1);
 		exit (0);

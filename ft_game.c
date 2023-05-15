@@ -6,7 +6,7 @@
 /*   By: salvarad <salvarad@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:29:26 by salvarad          #+#    #+#             */
-/*   Updated: 2023/05/08 20:06:39 by salvarad         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:23:41 by salvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	ft_on_key(int key, t_game *game)
 	player_sprite = game -> map -> components -> player -> sprite;
 	if (key == KEY_SCAPE)
 		ft_close_game(game);
-	if (player_sprite == right_alive || player_sprite == left_alive
-		|| player_sprite == right_jump || player_sprite == left_jump)
-		ft_move_player(key, game);
+	ft_move_player(key, game);
 	return (0);
 }
 
